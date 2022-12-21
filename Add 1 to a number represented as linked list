@@ -1,0 +1,21 @@
+class Solution:
+    def addOne(self,head):
+        #Returns new head of linked List
+        l = ''
+        h = head
+        while(h):
+            l += str(h.data)
+            h = h.next
+            
+        l = str(int(l) + 1)
+        
+        head = Node(l[0])
+        h = head
+        for i, v in enumerate(l):
+            if i != 0:
+                new = Node(v)
+                h.next = new
+                h = new
+                
+        return head
+            
