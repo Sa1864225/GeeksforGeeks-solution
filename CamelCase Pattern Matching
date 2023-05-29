@@ -1,0 +1,21 @@
+#User function Template for python3
+
+class Solution:
+    def CamelCase(self,N,d,p):
+        #code here
+        ans=[]
+        for i in d:
+            k=0
+            for j in i:
+                if j.upper()==j:
+                    if p[k]==j:
+                        k+=1
+                    else:
+                        break
+                if k>=len(p):
+                    ans.append(i)
+                    break
+        if len(ans)!=0:
+            return ans
+        return [-1]
+                    
