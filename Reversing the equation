@@ -1,0 +1,27 @@
+#User function Template for python3
+
+class Solution:
+    def reverseEqn(self, s):
+        # code here
+        a=[]
+        s1=''
+        for i in s:
+            if i=='+' or i=='-' or i=='*' or i=='/':
+                if len(s1)==0:
+                    a.append(i)
+                else:
+                    a.append(s1)
+                    s1=''
+                    a.append(i)
+                    
+            else:
+                s1+=i
+                if i=='0':
+                    a.append(s1)
+                    s1=''
+        if len(s1)!=0:
+            a.append(s1)
+        return ''.join(a[::-1])
+            
+            
+            
