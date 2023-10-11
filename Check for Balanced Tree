@@ -1,0 +1,27 @@
+
+class Tree
+{
+    int ch(Node root)
+    {
+        if(root==null)
+        return 0;
+        int lh=ch(root.left)+1;
+	    int rh=ch(root.right)+1;
+	    if(Math.abs(lh-rh)>1)
+	    return 100000;
+	    return Math.max(lh,rh);
+    }
+    
+    //Function to check whether a binary tree is balanced or not.
+    boolean isBalanced(Node root)
+    {
+	// Your code here
+	    if(root==null)
+	    return true;
+	    int lh=ch(root.left)+1;
+	    int rh=ch(root.right)+1;
+	    if(lh>=100000 || rh>=100000 || Math.abs(lh-rh)>1)
+	    return false;
+	    return true;
+    }
+}
