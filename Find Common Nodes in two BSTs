@@ -1,0 +1,25 @@
+
+class Solution
+{
+    //Function to find the nodes that are common in both BST.
+    static void trav(Node root,HashMap<Integer,Integer> map, ArrayList<Integer> ans)
+    {
+        if(root==null)
+        return;
+        trav(root.left,map,ans);
+        if(map.containsKey(root.data))
+        ans.add(root.data);
+        else
+        map.put(root.data,1);
+        trav(root.right,map,ans);
+    }
+	public static ArrayList<Integer> findCommon(Node root1,Node root2)
+    {
+        //code here
+        HashMap<Integer,Integer> map=new HashMap<>();
+        ArrayList<Integer> ans=new ArrayList<>();
+        trav(root1,map,ans);
+        trav(root2,map,ans);
+        return ans;
+    }
+}
