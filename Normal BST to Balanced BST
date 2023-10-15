@@ -1,0 +1,30 @@
+
+class Solution:
+    def storeBSTNodes(self,root,nodes):
+        
+        if not root:
+            return
+        self.storeBSTNodes(root.left,nodes)
+        nodes.append(root)
+        self.storeBSTNodes(root.right,nodes)
+     
+    def buildTreeUtil(self,nodes,start,end):
+        
+        if start>end:
+            return None
+        mid=(start+end)//2
+        node=nodes[mid]
+     
+        node.left=self.buildTreeUtil(nodes,start,mid-1)
+        node.right=self.buildTreeUtil(nodes,mid+1,end)
+        return node
+     
+   
+    def buildBalancedTree(self,root):
+         
+       
+        nodes=[]
+        self.storeBSTNodes(root,nodes)
+     
+        n=len(nodes)
+        return self.buildTreeUtil(nodes,0,n-1)
