@@ -1,0 +1,28 @@
+
+from typing import List
+
+class Solution: 
+    def dfs(self,al, visit, path, sr):
+        visit[sr] = 1
+        path[sr] = 1
+        for i in al[sr]:
+            if visit[i] == 0:
+                if self.dfs(al, visit, path, i) == True:
+                    return True
+            elif path[i] == 1:
+                return True
+        path[sr] = 0
+        return False
+    
+    def eventualSafeNodes(self, V : int, adj : List[List[int]]) -> List[int]:
+        # code here
+        visit = [0]*V
+        path = [0]*V
+        for i in range(V):
+            if visit[i] == 0:
+                self.dfs(adj, visit, path, i)
+        res = []
+        for i in range(V):
+            if visit[i] == 1 and path[i] == 0:
+                res.append(i)
+        return res
