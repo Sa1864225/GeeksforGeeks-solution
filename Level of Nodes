@@ -1,0 +1,33 @@
+class Solution
+{
+    int ans = -1;
+public:
+    //Function to find the level of node X.
+
+    void dfs(vector<int> adj[], int X, int node, int h, vector<bool>& visited)
+    {
+        visited[node] = true; // Mark the current node as visited.
+        
+        if (node == X)
+        {
+            ans = h;
+            return;
+        }
+
+        for (auto i : adj[node])
+        {
+            if (!visited[i])
+            {
+                dfs(adj, X, i, h + 1, visited);
+            }
+        }
+    }
+
+    int nodeLevel(int V, vector<int> adj[], int X) 
+    {
+        vector<bool> visited(V, false); // Initialize a visited array.
+        dfs(adj, X, 0, 0, visited);
+
+        return ans;
+    }
+};
