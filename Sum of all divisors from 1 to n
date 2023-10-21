@@ -1,0 +1,36 @@
+
+class Solution
+{
+public:
+    long long sumOfDivisors(int n)
+    {
+        // Write Your Code here
+        
+        long long ans=0;
+        for(int i=1;i<=n;i++)
+        {
+            ans=ans+(n/i)*i;
+        }
+        return ans;
+    }
+};
+class Solution1
+{
+public:
+    long long sumOfDivisors(int n)
+    {
+        // Write Your Code here
+        if(n==1)
+        return 1;
+        int ans=0;
+        for(int i=1;i<=n;i++)
+        {
+            for(int j=1;j<=i;j++)
+            {
+                if(i%j==0)
+                ans=ans+j;
+            }
+        }
+        return ans;
+    }
+};
