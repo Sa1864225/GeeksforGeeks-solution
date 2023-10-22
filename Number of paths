@@ -1,0 +1,153 @@
+class Solution {
+public:
+    int numberOfPaths(int m, int n) {
+        const int MOD = 1000000007;
+        long long result = 1;
+        for (int i = 1; i <= m-1; i++) {
+            result=(result *(m+n-2-i+1))%MOD;
+            result=(result*modInverse(i,MOD))%MOD;
+        }
+        return result;
+    }
+
+private:
+    long long modInverse(long long a, long long m) {
+        long long m0=m;
+        long long x0=0;
+        long long x1=1;
+        while (a>1) {
+            long long q=a/m;
+            long long t=m;
+            m=a%m;
+            a=t;
+            t=x0;
+            x0=x1-q*x0;
+            x1=t;
+        }
+        if (x1 < 0) {
+            x1+=m0;
+        }
+        return x1;
+    }
+};
+
+class Solution6
+{
+    
+    public:
+    long long numberOfPaths(int m, int n)
+    {
+        // Code Here
+        if(m==1 || n==1)
+        return 1;
+        int res=1;
+        for(int i=n;i<(m+n-1);i++) {
+            res=(res*i)%1000000007;
+            res/=(i-n+1);
+            
+        }
+        return res;
+    }
+};
+
+
+class Solution5
+{
+    
+    public:
+    long long numberOfPaths(int m, int n)
+    {
+        // Code Here
+        if(m==1 || n==1)
+        return 1;
+        vector<int> dp(n);
+        dp[n]={1};
+        dp[0]=1;
+        for(int i=0;i<m;i++)
+        {
+            for(int j=0;j<n;j++)
+            dp[j]=(dp[j]+dp[j-1])%1000000007;
+        }
+        return dp[n-1];
+    }
+};
+
+class Solution4
+{
+    
+    public:
+    long long  numberOfPaths(int m, int n)
+    {
+        // Code Here
+        if(m==1 || n==1)
+        return 1;
+        vector<vector<long long>> dp(m + 1,vector<long long>(n + 1,-1));
+        return search(m,n,dp);
+    }
+    private:
+    long long search(int m,int n,vector<vector<long long>> dp)
+    {
+        if(m==1 || n==1)
+        return 1;
+        if(dp[m][n]==-1)
+        dp[m][n]=(search(m-1,n,dp)+search(m,n-1,dp))%1000000007;
+        return dp[m][n];
+    }
+};
+
+class Solution3
+{
+    public:
+    long long  numberOfPaths(int M, int N)
+    {
+        // Code Here
+        if(M==1 || N==1)
+        return 1;
+        return (numberOfPaths(M-1,N)+numberOfPaths(M,N-1))%1000000007;
+    }
+};
+
+class Solution2
+{
+    public:
+    long long  numberOfPaths(int M, int N)
+    {
+        // Code Here
+        if(M==1 || N==1)
+        return 1;
+        // vector<int> dp
+        return search(M,N,0,0);
+    }
+    private:
+    long long search(int m,int n,int i,int j)
+    {
+        if(n-1==j || m-1==i)
+            return 1;
+        else
+            return (search(m,n,i+1,j)+search(m,n,i,j+1))%1000000007;
+    }
+};
+
+class Solution1
+{
+    public:
+    long long  numberOfPaths(int M, int N)
+    {
+        // Code Here
+        if(M==1 || N==1)
+        return 1;
+        return search(M,N,0,0);
+    }
+    private:
+    long long search(int m,int n,int i,int j)
+    {
+        if(n-1==j && m-1==i)
+            return 1;
+        else if(n-1==j)
+            return search(m,n,i+1,j);
+        else if(m-1==i)
+            return search(m,n,i,j+1);
+        else
+            return (search(m,n,i+1,j)+search(m,n,i,j+1))%1000000007;
+    }
+};
