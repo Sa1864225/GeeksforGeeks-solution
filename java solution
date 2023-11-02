@@ -1,0 +1,20 @@
+class Solution {
+    int minDist(int a[], int n, int x, int y) {
+        // code here
+        int ans=1000000,j=-1,k=-1;
+        for(int i=0;i<n;i++)
+        {
+            if(x==a[i])
+            j=i;
+            else if(y==a[i])
+            k=i;
+            if(j!=-1 && k!=-1)
+            {
+                ans=Math.min(ans,Math.abs(k-j));
+            }
+        }
+        if(ans==1000000)
+        return -1;
+        return ans;
+    }
+}
