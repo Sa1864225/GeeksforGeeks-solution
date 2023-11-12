@@ -15,4 +15,5 @@ class Solution:
                     l=i
             del d[l]
             ans.append(l)
+
         return ans
