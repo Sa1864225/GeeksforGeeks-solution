@@ -1,0 +1,18 @@
+d={}
+        for i in s:
+            if i in d:
+                d[i]+=1
+            else:
+                d[i]=1
+        for i in range(k):
+            m=0
+            k='a'
+            for j in d:
+                if d[j]>m:
+                    m=d[j]
+                    k=j
+            d[k]-=1
+        ans=0
+        for i in d:
+            ans+=d[i]**2
+        return ans
